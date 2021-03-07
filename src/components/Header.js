@@ -1,11 +1,15 @@
 //impt to import prop types
 import PropTypes from 'prop-types'
+import Button from './Button'
 //rafce to create a react arrow function
 const Header = ({title}) => {
+    const onClick=(e)=>{
+        console.log(e);
+    }
     return (
         <header className="header">
             <h1>{title}</h1>
-            <button className="btn">Add</button>
+            <Button color='green' text='Add task' onClick={onClick}/>
         </header>
     )
 }
@@ -22,10 +26,10 @@ Header.propTypes={
 }
 
 //in file css styling
-const headerStyle={
-    color:'red',
-    backgroundColor:'black'
-}
+// const headerStyle={
+//     color:'red',
+//     backgroundColor:'black'
+// }
 
 export default Header
 

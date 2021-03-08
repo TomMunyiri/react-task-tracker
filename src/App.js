@@ -42,16 +42,20 @@ function App() {
   }
 
   //add task
-  const addTask=(task)=>{
-    const id=Math.floor(Math.random()*10000)+1
-    const newTask={id,...task}
-    setTasks([...tasks,newTask])
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = { id, ...task }
+    setTasks([...tasks, newTask])
   }
 
   return (
     <div className="container">
-      <Header title='My Task Tracker' onAddClick={()=>setShowAddTask(!showAddTask)} showAddTask={showAddTask}/>
-      {showAddTask&&<AddTask addTask={addTask}/>}
+      <Header
+        title='My Task Tracker'
+        onAddClick={() => setShowAddTask(!showAddTask)}
+        showAddTask={showAddTask}
+      />
+      {showAddTask && <AddTask addTask={addTask} />}
       {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} toogleReminder={toogleReminder} />) : ("No tasks")}
     </div>
   );

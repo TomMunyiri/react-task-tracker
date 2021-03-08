@@ -34,14 +34,14 @@ function App() {
   }
 
   //toggle reminder
-  const toogleReminder=()=>{
-    
+  const toogleReminder = (id) => {
+    console.log(id)
   }
 
   return (
     <div className="container">
       <Header title='My Task Tracker' />
-      {tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} /> : "No tasks"}
+      {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} toogleReminder={toogleReminder} />) : ("No tasks")}
     </div>
   );
 }

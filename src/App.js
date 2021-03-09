@@ -51,9 +51,17 @@ function App() {
 
   //delete a task
   //actions get passed up
-  const deleteTask = (id) => {
+  //delete on backend
+  const deleteTask = async(id) => {
+    await fetch(`http://localhost:5000/tasks/${id}`,{
+      method:'DELETE'
+    })
     setTasks(tasks.filter((task) => task.id !== id))
   }
+  //delete function for hard coded tasks
+  /* const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id))
+  } */
 
   //toggle reminder
   const toogleReminder = (id) => {

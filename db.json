@@ -16,7 +16,7 @@
       "id": 3,
       "text": "Finish Next JS course",
       "day": "Mar 8 at 11am",
-      "reminder": true
+      "reminder": false
     }
   ]
 }

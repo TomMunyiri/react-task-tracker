@@ -42,9 +42,16 @@ function App() {
     getTasks()
   }, [])
 
-  //fetch tasks from mock server
+  //fetch all tasks from mock server
   const fetchTasks = async () => {
     const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+    return data
+  }
+
+  //fetch a single task from mock server
+  const fetchTask = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`)
     const data = await res.json()
     return data
   }
@@ -64,8 +71,22 @@ function App() {
   } */
 
   //toggle reminder
-  const toogleReminder = (id) => {
-    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
+  const toogleReminder = async (id) => {
+    //for hard coded tasks the func does need to be async
+    const taskToToggle=await fetchTask(id)
+    const updatedTask={...taskToToggle,reminder:!taskToToggle.reminder}
+    const res =await fetch(`http://localhost:5000/tasks/${id}`,{
+      method:'PUT',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify(updatedTask)
+    })
+    const data=await res.json()
+    //set updated reminder from mock server on UI 
+    setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder } : task))
+    //set updated reminder on UI for hard coded tasks
+    //setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
   }
 
   //add task

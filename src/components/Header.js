@@ -1,16 +1,24 @@
 //impt to import prop types
 import PropTypes from 'prop-types'
 import Button from './Button'
+import { useLocation } from 'react-router-dom'
 //rafce to create a react arrow function
 const Header = ({ title, onAddClick, showAddTask }) => {
+    //useLocation hook to help us get the route/location we are at
+    const location = useLocation()
     return (
         <header className="header">
             <h1>{title}</h1>
-            <Button
-                color={showAddTask ? 'red' : 'green'}
-                text={showAddTask ? 'Close' : 'Add Task'}
-                onClick={onAddClick}
-            />
+            {
+                //a ternary to show add button only if we are on the home page
+                location.pathname === '/' && (
+                    <Button
+                        color={showAddTask ? 'red' : 'green'}
+                        text={showAddTask ? 'Close' : 'Add Task'}
+                        onClick={onAddClick}
+                    />
+                )
+            }
         </header>
     )
 }
